@@ -13,17 +13,24 @@ public class EnemyAttack : MonoBehaviour
         em = bulletParticleSystem.emission;
     }
 
-    private int RaycastLength = 10;
+    private float RaycastLength = 100f;
 
-    private float FiringRate = 10f;
+    private float FiringRate = 5f;
+    float attackTimer = 0f;
 
     void Update()
     {
         Vector3 forward = transform.TransformDirection(Vector3.forward);
-
+        
         if (Physics.Raycast(transform.position, forward, RaycastLength))
         {
-            Attack();
+            attackTimer += Time.deltaTime;
+
+            if(attackTimer >= 1f/FiringRate)
+            {
+                Attack();
+                attackTimer = 0f;
+            }
 
             em.rateOverTime = FiringRate;
         }
