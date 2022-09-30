@@ -40,6 +40,18 @@ public class PlayerAttack : MonoBehaviour
     {
         Ray ray = new Ray(bulletParticleSystem.transform.position, bulletParticleSystem.transform.forward);
 
+        float raycastLength = 100f;
+
+        if (Physics.Raycast(ray, out RaycastHit hit, raycastLength))
+        {
+            var playerHitHealthScript = hit.collider.GetComponent<PlayerHealth>();
+
+            if (playerHitHealthScript != null)
+            {
+                float reduceHealthBy = 10f;
+                playerHitHealthScript.ReduceHealth(reduceHealthBy);
+            }
+        }
         //check for collision
         //reduce health
     }
