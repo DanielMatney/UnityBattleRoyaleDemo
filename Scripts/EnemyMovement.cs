@@ -51,5 +51,10 @@ public class EnemyMovement : MonoBehaviour
         var forward = transform.TransformDirection(Vector3.forward);
 
         controller.SimpleMove(forward * speed);
+
+        if (this.transform.position.y < 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
