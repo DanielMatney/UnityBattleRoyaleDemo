@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
         Look();
 
-        if (this.transform.position.y < 0)
+        if (this.transform.position.y < -5f)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
